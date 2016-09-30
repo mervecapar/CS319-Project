@@ -4,6 +4,9 @@ Run For Live is a kind of survival game. The aim of the game is from one player�
 Group 2 Members
 
 Mehmet Nuri Yumuşak-21302303
+
 Merve Çapar-21300980
+
 Selin Özdaş-21400537 
+
 Ege Yosunkaya-21402025
