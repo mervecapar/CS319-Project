@@ -1,0 +1,48 @@
+﻿<Window x:Name="main" x:Class="RunToLive.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RunToLive"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1280" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid>
+            <Grid Background="Black">
+                <Border BorderThickness="9" HorizontalAlignment="Left" Height="550" Margin="152,79,0,0" VerticalAlignment="Top" Width="969" BorderBrush="#FF7C7C7C">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FF818181" ShadowDepth="20" BlurRadius="10"/>
+                    </Border.Effect>
+                    <Image x:Name="image" Source="C:\Users\Nuri\Desktop\proje\RunToLive\RunToLive\items\logo.jpg" Margin="217.2,37.2,620.2,63"/>
+                </Border>
+                <Button x:Name="play" Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Margin="698,347,0,0" Height="32" FontWeight="Black" FontFamily="Verdana" Click="Game_Click" Background="Black" Foreground="#FF999999" BorderBrush="#FFDACBCB">
+                    <Button.Effect>
+                        <DropShadowEffect Color="#FF666666" ShadowDepth="10"/>
+                    </Button.Effect>
+                </Button>
+                <Button x:Name="Credits" Content="Credits" HorizontalAlignment="Left" Height="35" Margin="698,397,0,0" VerticalAlignment="Top" Width="176" Background="#FF040101" Foreground="#FF999999" FontFamily="Verdana" FontWeight="Bold" BorderBrush="#FFDACBCB" Click="Credits_Click">
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="10" Color="#FF666666"/>
+                    </Button.Effect>
+                </Button>
+                <Button x:Name="Help" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Margin="698,449,0,0" Height="35" Background="#FF060303" BorderBrush="#FFDACBCB" Foreground="#FF999999" FontFamily="Verdana" FontWeight="Bold" Click="Help_Click">
+                    <Button.Effect>
+                        <DropShadowEffect Color="#FF666666" ShadowDepth="10"/>
+                    </Button.Effect>
+                </Button>
+            </Grid>
+            <Label x:Name="GameTitle" Content="   Run To Live" HorizontalAlignment="Left" Height="126" Margin="573,181,0,0" Width="423" VerticalContentAlignment="Center" VerticalAlignment="Top" FontFamily="Orbitron" FontWeight="ExtraBold" FontSize="48" FontStyle="Oblique" Background="Transparent">
+                <Label.Effect>
+                    <DropShadowEffect Color="#FF999797"/>
+                </Label.Effect>
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FFC5C5C5" Offset="1"/>
+                        <GradientStop Color="#FF535353" Offset="0.627"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,55 @@
+Game Rules:
+1. Each country, except those at the edge of the world,
+has 4 neighbors at the north, south, west, east side. 
+Countries are connected to their neighboring countries.
+Player can travel from a country to a neighboring country.
+A direct travel from a country to another is otherwise not
+possible.
+
+2. At the beginning, there are people in the world. As 
+an initial condition, X% of them are infected with the
+virus (but they are not sick yet). Initially people are
+assigned to countries uniformly at random.
+
+3. After 6 days of becoming infected, a person becomes
+sick and is therefore visibly infectious.
+
+4. After 14 days of becoming infected, a person dies
+with a probability of 25%. Dead people do not move, 
+but stay visibly infectious.
+
+5. After 16 days of becoming infected, a person becomes
+immune and is no longer visibly infectious, but remains
+infectious.
+
+6. After 18 days of becoming infected, a person turns 
+healthy. He is now in the same state as he was before his
+infection, which means that he can get infected again.
+
+7. Each step of the game corresponds to one game day.
+
+8. At the beginning of the game, each person decides when
+to move within the next 5 days. More precisely, she picks 
+the moving day uniformly at random among the next 5 days. 
+After moving, she repeats the same process. For example,
+if on day 0 the person decides to move after 3 days, she 
+will move from her current country on day 3. After that 
+move, she will make another decision: forexample, she may
+decide to move after 5 days this time, so her next move will 
+be on day 8, etc.
+
+9. On the day of each move, a person will pick one of the
+countries available to her with equal probability and will 
+move to it. The set of available countries is defined as the
+neighboring countries that contain no visibly infectious 
+people. A person avoids countries with sick or dead (visibly
+infectious) people. This means that if a person is surrounded
+by visibly infectious people, she does not change position;
+however, she might change position the next time she tries 
+to move (for example, if a visibly infectious person moved
+out of one of the neighboring countries or became immune).
+
+10. When a person moves into a country with an infectious 
+person she might get infected according to the transmissibility
+rate of 40%, unless the person is already infected or immune. 
+A person cannot get infected between moves.
