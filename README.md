@@ -10,3 +10,7 @@ Merve Çapar-21300980
 Selin Özdaş-21400537 
 
 Ege Yosunkaya-21402025
+
+!NOTE!
+Only ".cs" files includes codes about the project, all the other files is about Visual Studio 2015. 
+aaaaa.xam.cs files also includes code.
