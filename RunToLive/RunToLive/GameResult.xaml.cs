@@ -43,7 +43,7 @@ namespace RunToLive
                               "Number of people vaccinated:\r\n" +
                               "You survive in day:\r\n";
 
-            stats_number.Text = (int)(((float)stats[3] / (float)totalPeople) * 100) + "\r\n" +
+            stats_number.Text = "%"+(int)(((float)stats[3] / (float)totalPeople) * 100) + "\r\n" +
                                 (stats[4]-superHuman) + "\r\n" +
                                 (stats[5]) + "\r\n";
 

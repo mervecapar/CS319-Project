@@ -113,8 +113,14 @@ namespace benimKodlar
                 {
                     isSick = false;
                     isDied = true;
+                    if(isDoctor)
+                    {
+                        allCountries[currentCountryId].numberOfDoctor--;
+                        isDoctor = false;
+                    }
                     allCountries[currentCountryId].numberOfSicked--;
                     allCountries[currentCountryId].numberOfDied++;
+                    daysPassedAfterInfected = 0;
                 }
             }
             else if (daysPassedAfterInfected == 16 && !isDied)
@@ -123,6 +129,7 @@ namespace benimKodlar
                 isInfected = true;
                 allCountries[currentCountryId].numberOfInfected++;
                 allCountries[currentCountryId].numberOfSicked--;
+
             }
             else if (daysPassedAfterInfected == 18 && !isDied)
             {
@@ -141,7 +148,7 @@ namespace benimKodlar
                 {
                     if (left == 0)
                         break;
-                    if (populationList[i].currentCountryId == currentCountryId && !populationList[i].isInfected && !populationList[i].isSick && !populationList[i].isDied && !populationList[i].isSuperHuman)
+                    if (populationList[i].currentCountryId == currentCountryId && !populationList[i].isInfected && !populationList[i].isSick && !populationList[i].isDied && !populationList[i].isSuperHuman &&!populationList[i].isDoctor)
                     {
                         populationList[i].isSuperHuman = true;
                         totalCountry[populationList[i].currentCountryId].numberOfSuperHuman++;

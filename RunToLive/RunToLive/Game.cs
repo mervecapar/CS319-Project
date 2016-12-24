@@ -185,7 +185,7 @@ namespace benimKodlar
 
             if (day == 0 || day == 1)
                 return "The World is under affect of a virus";
-            else if (totalDied > 0)
+            else if (totalDied > 0 && day < 20)
                 return "First human has been died by virus";
             else if ((totalInfected * 100) / totalHealthy > 25)
                 return "The World is getting infected day by day";
