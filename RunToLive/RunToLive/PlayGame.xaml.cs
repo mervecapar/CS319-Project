@@ -42,8 +42,9 @@ namespace RunToLive
         int clicked_country = -1;
         int count = 0;
         bool moveFurtherCheck = false;
-        
-        public PlayGame(int diff,int gender,int audio)
+        bool isMale;
+
+        public PlayGame(int diff,bool isMale)
         {
             InitializeComponent();
             createMap(diff);
@@ -51,6 +52,8 @@ namespace RunToLive
             giveColorToCountries();
             infectedProb.Content = "%" + game.giveInfectedProbOfPlayer();
             setNewsText();
+            this.isMale = isMale;
+            putPlayerPicture(isMale);
         }
         public void createMap(int level)
         {
@@ -166,6 +169,23 @@ namespace RunToLive
                 count++;
             }
         }
+
+        private void putPlayerPicture(bool isMale)
+        {
+            foreach (Button b in myGrid.Children)
+            {
+                if (Int32.Parse(b.Name.Substring(1)) == game.world.mapManager.gameMap.player.currentCountryId)
+                {
+                    string manPath = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\icon\\man.png";
+                    string womanPath = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\icon\\woman.png";
+                    if (isMale)
+                        b.Background = new ImageBrush(new BitmapImage(new Uri(@manPath)));
+                    else
+                        b.Background = new ImageBrush(new BitmapImage(new Uri(@womanPath)));
+
+                }
+            }
+        }
         private void turnButton(object sender, RoutedEventArgs e)
         {
             giveColorToCountries();
@@ -173,15 +193,25 @@ namespace RunToLive
             if (moveFurtherCheck)
             {
                 if (!game.passTurn(clicked_country, true))
-                    button.IsEnabled = false;
-                moveFurtherCheck = false;
+                {
+                    if(game.checkIsGameFinished())
+                    {
+                        button.IsEnabled = false;
+                        moveFurtherCheck = false;
+                    }
+                }
+               
             }
             else
                 if(!game.passTurn(clicked_country, false))
-                    button.IsEnabled = false;
+                    if (game.checkIsGameFinished())
+                    {
+                        button.IsEnabled = false;
+                    }
 
+            putPlayerPicture(isMale);
             showWorldStatistics();
-            infectedProb.Content = "%" + game.giveInfectedProbOfPlayer();
+            infectedProb.Content = " % " + game.giveInfectedProbOfPlayer();
             setNewsText();
             //all of them turn black
             foreach (Button b in myGrid.Children)

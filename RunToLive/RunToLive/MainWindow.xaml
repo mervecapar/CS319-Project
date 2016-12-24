@@ -13,7 +13,7 @@
                     <Border.Effect>
                         <DropShadowEffect Color="#FF818181" ShadowDepth="20" BlurRadius="10"/>
                     </Border.Effect>
-                    <Image x:Name="image" Source="C:\Users\Nuri\Desktop\proje\RunToLive\RunToLive\items\logo.jpg" Margin="217.2,37.2,620.2,63"/>
+                    <Image x:Name="image" Margin="217.2,37.2,620.2,63"/>
                 </Border>
                 <Button x:Name="play" Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Margin="698,347,0,0" Height="32" FontWeight="Black" FontFamily="Verdana" Click="Game_Click" Background="Black" Foreground="#FF999999" BorderBrush="#FFDACBCB">
                     <Button.Effect>

@@ -28,6 +28,8 @@ namespace RunToLive
         public MainWindow()
         {
             InitializeComponent();
+            string imagePath = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\items\\logo.jpg";
+            image.Source = new BitmapImage(new Uri(@imagePath));
         }
 
         private void Game_Click(object sender, RoutedEventArgs e)
@@ -53,8 +55,8 @@ namespace RunToLive
             cr.Title = "Help";
             cr.setTitle("Help");
             //reads file and converts it to string format
-
-            string text = System.IO.File.ReadAllText(@"C:\Users\\Nuri\Desktop\proje\RunToLive\RunToLive\items\Help.txt");
+            string path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\items\\Help.txt";
+            string text = System.IO.File.ReadAllText(@path);
             cr.setText(text);
             cr.Show();
             this.Close();

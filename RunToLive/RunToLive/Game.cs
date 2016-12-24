@@ -102,9 +102,16 @@ namespace benimKodlar
                 else
                 {
                     if(world.getMap().getPlayer().notTravelDay > 0)
+                    {
                         System.Windows.MessageBox.Show("You can not stay same country any more !");
+                        return false;
+                    }
                     else
+                    {
                         System.Windows.MessageBox.Show("Travel not possible.");
+                        return false;
+                    }
+                        
                 }
                     
                 return true;

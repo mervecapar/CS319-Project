@@ -1,5 +1,5 @@
 ﻿/*
-Contributors: Selin
+Contributors: Selin, Merve
 
 */
 using System;
@@ -27,7 +27,6 @@ namespace RunToLive
         private bool isSoundOn = true;
         private int gameLevel = 2;
         private bool isMale = true;
-        int[] lines = new int[2];
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
         public Settings()
@@ -77,7 +76,7 @@ namespace RunToLive
         private void play_Click(object sender, RoutedEventArgs e)
         {
 
-            PlayGame p = new PlayGame(gameLevel, lines[0], lines[1]);
+            PlayGame p = new PlayGame(gameLevel, isMale);
             p.Show();
             this.Close();
         }
