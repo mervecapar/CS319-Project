@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Contributors: Mehmet Nuri
+
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,25 +77,24 @@ namespace benimKodlar
                 if (giveMePossibility(airPossibility))//air traffic
                 {
                     for (int o = 0; o < allCountries.Length; o++)
-                        if (allCountries[o].numberOfInfected == 0 || allCountries[o].numberOfDied == 0)
+                        if (allCountries[o].numberOfDied == 0)
                             availableCountries.Add(allCountries[o]);
                 }
                 else//not air traffic
                 {
                     for (int i = 0; i < allCountries[currentCountryId].neighbores.Length; i++)
-                        if (allCountries[currentCountryId].neighbores[i].numberOfInfected == 0 || allCountries[currentCountryId].neighbores[i].numberOfDied == 0)
+                        if (allCountries[currentCountryId].neighbores[i].numberOfDied == 0)
                             availableCountries.Add(allCountries[currentCountryId].neighbores[i]);
                 }
 
                 if (availableCountries.Count > 0)
                 {
                     int a = RandomNumber(0,availableCountries.Count);
-                    currentCountryId = availableCountries[a].countryId;
-                    availableCountries[a].addHuman(this);
                     allCountries[currentCountryId].removeHuman(this);
+                    currentCountryId = availableCountries[a].countryId;
+                    allCountries[currentCountryId].addHuman(this);
                 }
                 determineTravelDay(); //determine new travel day
-            
             }
         }
 
@@ -110,8 +113,14 @@ namespace benimKodlar
                 {
                     isSick = false;
                     isDied = true;
+                    if(isDoctor)
+                    {
+                        allCountries[currentCountryId].numberOfDoctor--;
+                        isDoctor = false;
+                    }
                     allCountries[currentCountryId].numberOfSicked--;
                     allCountries[currentCountryId].numberOfDied++;
+                    daysPassedAfterInfected = 0;
                 }
             }
             else if (daysPassedAfterInfected == 16 && !isDied)
@@ -120,6 +129,7 @@ namespace benimKodlar
                 isInfected = true;
                 allCountries[currentCountryId].numberOfInfected++;
                 allCountries[currentCountryId].numberOfSicked--;
+
             }
             else if (daysPassedAfterInfected == 18 && !isDied)
             {
@@ -129,19 +139,29 @@ namespace benimKodlar
             }
         }
 
-        public void vaacinatePeople(ref Human[] populationList, int vaccinateNumber)
+        public void vaacinatePeople(ref Country[] totalCountry,ref Human[] populationList, int vaccinateNumber, ref Player p)
         {
-            if (isDoctor)
+            if (isDoctor && !isDied)
             {
                 int left = vaccinateNumber;
                 for (int i = 0; i < populationList.Length; i++)
                 {
                     if (left == 0)
                         break;
-                    if (populationList[i].currentCountryId == currentCountryId && !populationList[i].isInfected && !populationList[i].isSick && !populationList[i].isDied && !populationList[i].isSuperHuman)
+                    if (populationList[i].currentCountryId == currentCountryId && !populationList[i].isInfected && !populationList[i].isSick && !populationList[i].isDied && !populationList[i].isSuperHuman &&!populationList[i].isDoctor)
                     {
                         populationList[i].isSuperHuman = true;
-                        vaccinateNumber--;
+                        totalCountry[populationList[i].currentCountryId].numberOfSuperHuman++;
+                        left--;
+                    }
+                    if(this.currentCountryId == p.currentCountryId && left != 0 && !p.isInfected && !p.isSick && !p.isDied && !p.isSuperHuman)
+                    {
+                        if(giveMePossibility((1/ totalCountry[p.currentCountryId].numberOfPeople) * 100))
+                        {
+                            p.isSuperHuman = true;
+                            totalCountry[p.currentCountryId].numberOfSuperHuman++;
+                            left--;
+                        }
                     }
                 }
             }

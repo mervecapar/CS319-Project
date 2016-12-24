@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Contributors: Mehmet Nuri
+
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +15,7 @@ namespace benimKodlar
         public int day;
         public int vaccinateDay;
         public int airPossibility;
-        private MapManager mapManager;
+        public MapManager mapManager;
 
         //Function to get random number
         private static readonly Random random = new Random();
@@ -22,7 +26,7 @@ namespace benimKodlar
         // X : % percentage of infected  people in the society 
         // N : 5x5 or 6x6 etc. number of grids country
         // S : % percentage of super human people in the society 
-        // D : % percentage of super doctors people in the society 
+        // D : % percentage of doctors people in the society 
         // V : A doctor can vaccinate at most V people in each day
         // A : When a person decides to travel, with A% probability, she chooses to use air travel to fly to a random country
         public World(int P, int X, int N, int S, int D, int V, int A)
@@ -127,6 +131,20 @@ namespace benimKodlar
                     }
             }
         }
+        public void changeStatusAfterTravelForPlayer()
+        {
+            //for player
+            int cci = mapManager.getMap().getPlayer().currentCountryId;
+            if (mapManager.getMap().allCountries[cci].numberOfInfected > 0 || mapManager.getMap().allCountries[cci].numberOfSicked > 0)
+                if (giveMePossibility(giveMePlayerInfectedProb(mapManager.getMap().getPlayer()))) //%sick people number in the country 
+                {
+                    if (!mapManager.getMap().getPlayer().isInfected && !mapManager.getMap().getPlayer().isSick && !mapManager.getMap().getPlayer().isDied && !mapManager.getMap().getPlayer().isSuperHuman)
+                    {
+                        mapManager.gameMap.player.isInfected = true;
+                        mapManager.gameMap.allCountries[mapManager.getMap().getPlayer().currentCountryId].numberOfInfected++;
+                    }
+                }
+        }
 
         //it returns some datas about whole world 
         public int[] returnCurrentStatus()
@@ -164,16 +182,32 @@ namespace benimKodlar
             day++;
             foreach (Human h in mapManager.gameMap.allHumans) //travel people if necessary
             {
+                h.travelDaysLater--;
+                h.checkThePersonsInfection(ref mapManager.gameMap.allCountries);
+
+                if (h.isDoctor)
+                    h.vaacinatePeople(ref mapManager.gameMap.allCountries, ref mapManager.gameMap.allHumans, vaccinateDay, ref mapManager.gameMap.player);
+
+                h.travelIfNecessary(ref mapManager.gameMap.allCountries, airPossibility);
                 if (h.isInfected || h.isSick) //if she is infected, day after she is infected increasing
                     h.daysPassedAfterInfected++;
 
-                h.travelDaysLater--;
-                h.travelIfNecessary(ref mapManager.gameMap.allCountries, airPossibility);
-                h.checkThePersonsInfection(ref mapManager.gameMap.allCountries);
-                changeStatusAfterAllTravels();
-                h.vaacinatePeople(ref mapManager.gameMap.allHumans, vaccinateDay);
             }
+            //for player
+            mapManager.gameMap.player.checkThePersonsInfection(ref mapManager.gameMap.allCountries);
+            changeStatusAfterAllTravels();
+            changeStatusAfterTravelForPlayer();
+            if (mapManager.gameMap.player.isInfected || mapManager.gameMap.player.isSick) //if she is infected, day after she is infected increasing
+                mapManager.gameMap.player.daysPassedAfterInfected++;
         }
 
+        public int giveMePlayerInfectedProb(Human h)
+        {
+            int totPeople = mapManager.gameMap.allCountries[h.currentCountryId].numberOfPeople;
+            int sicPeople = mapManager.gameMap.allCountries[h.currentCountryId].numberOfSicked;
+            int infPeople = mapManager.gameMap.allCountries[h.currentCountryId].numberOfInfected;
+
+            return ((sicPeople + infPeople) * 100) / totPeople;
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Contributors: Mehmet Nuri
+
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +14,7 @@ namespace benimKodlar
     {
         public Country[] allCountries;
         public Human[] allHumans;
-        private Player player;
+        public Player player;
 
         public Map(int P, int N)
         {
@@ -23,6 +27,6 @@ namespace benimKodlar
         {
             return player;
         }
-
+ 
     }
 }

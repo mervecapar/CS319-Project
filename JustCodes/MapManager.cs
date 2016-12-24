@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Contributors: Mehmet Nuri, Ege
+
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,8 +66,8 @@ namespace benimKodlar
                 {
                     if (c1.countryId == countryID)
                     {
-                        gameMap.player.currentCountryId = c1.countryId;
-                        c1.addHuman(gameMap.player);
+                        gameMap.getPlayer().currentCountryId = c1.countryId;
+                        c1.addHuman(gameMap.getPlayer());
                     }
                 }
                 return true;

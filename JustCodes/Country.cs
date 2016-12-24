@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Contributors: Mehmet Nuri
+
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +21,7 @@ namespace benimKodlar
         public int numberOfSuperHuman;
         public int numberOfDoctor;
         public Country[] neighbores;
+        public string newColor;
 
         public Country()
         {
@@ -26,6 +31,7 @@ namespace benimKodlar
             numberOfDied = 0;
             numberOfSuperHuman = 0;
             numberOfDoctor = 0;
+            newColor = "Green";
         }
         
         public void addHuman(Human h)

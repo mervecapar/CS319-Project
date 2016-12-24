@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Contributors: Ege
+
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +22,7 @@ namespace benimKodlar
 
         public int[] getSettings(int difficulty)
         {
-            if (difficulty == 0)
+            if (difficulty == 1)
             {
                 this.settings[0] = 1600;
                 this.settings[1] = 10;
@@ -28,7 +32,7 @@ namespace benimKodlar
                 this.settings[5] = 2;
                 this.settings[6] = 25;
             }
-            else if (difficulty == 1)
+            else if (difficulty == 2)
             {
                 settings[0] = 576;
                 settings[1] = 15;

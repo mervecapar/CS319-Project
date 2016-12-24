@@ -13,4 +13,5 @@ Ege Yosunkaya-21402025
 
 !NOTE!</br>
 Only ".cs" files includes codes about the project, all the other files is about Visual Studio 2015. </br>
-aaaaa.xam.cs files also includes code.
+aaaaa.xam.cs files also includes code.</br>
+In The Folder "JustCode", there is just code files of this project it is for looking the code easier for instructor. 
