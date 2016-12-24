@@ -39,7 +39,7 @@ namespace WpfControl
             isAnimBegin = true;
             try
             {
-                //Stop animations to modify size and location of the circle 
+                //Stop animations 
                 rt.BeginAnimation(RotateTransform.AngleProperty, null);
                 rt1.BeginAnimation(RotateTransform.AngleProperty, null);
                 grid.BeginAnimation(Grid.MarginProperty, null);
